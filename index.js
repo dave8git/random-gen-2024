@@ -4,9 +4,9 @@ const fs = require('fs');
 // console.log('Platform: ', os.platform());
 // console.log('Arch: ', os.arch());
 
-let a = ['Artur', 'Bernard', 'Conrad', 'Dawid', 'Ewa', 'Franio'];
+let a = ['Artur', 'Bernard', 'Conrad', 'Dawid', 'Ewan', 'Franio'];
 
-let b = ['Ellen', 'Joanno', 'Magda', 'Kate', 'Rosie', 'Ann'];
+let b = ['Ewa', 'Joanno', 'Magda', 'Kate', 'Rosie', 'Ann'];
 
 let c = ['M', 'F'];
 
@@ -16,9 +16,37 @@ const randChoice = (arr) => {
     return arr[Math.floor(arr.length * Math.random())];
 }
 
-console.log(randChoice(b));
+const people = [];
 
-// fs.writeFile('outputfile.txt', data, (err) => {
-//     if (err) throw err;
-//     console.log('The file has been saved!');
-//   });
+const generateObject = () => {
+    
+
+    for (let i = 0; i <= 20; i++ ) {
+        const object = {};
+        const gender = randChoice(c);
+
+        if(gender === 'M') {
+            object['gender'] = 'M';
+            object['firstName'] = randChoice(a);
+            object['lastName'] = randChoice(d);
+        } else {
+            object['gender'] = 'F';
+            object['firstName'] = randChoice(b);
+            object['lastName'] = randChoice(d);
+        }
+
+        console.log(object);
+        people.push(object);
+    }
+}
+
+generateObject();
+
+let data = JSON.stringify(people)
+
+console.log(data);
+
+fs.writeFile('people.json', data, (err) => {
+    if (err) throw err;
+    console.log('The file has been saved!');
+  });
